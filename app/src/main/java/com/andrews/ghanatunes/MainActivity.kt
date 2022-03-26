@@ -22,7 +22,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colors.background
                 ) {
-                    Greeting("Android This is a test mode")
+                    Greeting("Android This is a test mode This is live preview on emulator")
                 }
             }
         }

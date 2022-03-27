@@ -12,13 +12,21 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
+import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.andrews.ghanatunes.models.NewsModel
+import com.andrews.ghanatunes.screens.NewsScreen
+import com.andrews.ghanatunes.screens.ProfileScreen
+import com.andrews.ghanatunes.screens.RadioScreen
 import com.andrews.ghanatunes.ui.theme.GhanaTunesTheme
 import com.andrews.ghanatunes.viewmodels.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -49,9 +57,6 @@ class MainActivity : ComponentActivity() {
                             }
                         )
                     },
-                    content = {
-                        Greeting("test")
-                    },
                     bottomBar = {
                        BottomNavigation{
                            val navBackStackEntry by navController.currentBackStackEntryAsState()
@@ -59,18 +64,34 @@ class MainActivity : ComponentActivity() {
                            navigationDestinations.forEach { navigationDestination ->
                               BottomNavigationItem(
                                   selected = currentDestination?.hierarchy?.any {it.route == navigationDestination.route} == true,
-                                  onClick = { /*TODO*/ },
+                                  onClick = { 
+                                            navController.navigate(navigationDestination.route){
+                                                popUpTo(navController.graph.findStartDestination().id){
+                                                    saveState = true
+                                                }
+                                                launchSingleTop = true
+                                                restoreState = true
+                                            }
+                                  },
                                   label = {Text(navigationDestination.title)},
                                   icon = {Icon(painterResource(id = navigationDestination.iconResourceId), contentDescription = "test")}
                               )
                            }
                        }
                     }
-                )
+                ){ innerPadding ->
+                   NavHost(navController = navController, startDestination = NavigationDestination.News.route ){
+                       composable(NavigationDestination.News.route){ NewsScreen()}
+                       composable(NavigationDestination.Radios.route){ RadioScreen()}
+                       composable(NavigationDestination.Profile.route){ ProfileScreen()}
+                   }
+                }
             }
         }
     }
 }
+
+
 
 @Composable
 fun Greeting(name: String) {

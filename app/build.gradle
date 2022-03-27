@@ -64,4 +64,13 @@ dependencies {
     // Dagger hilt
     implementation 'com.google.dagger:hilt-android:2.41'
     kapt 'com.google.dagger:hilt-compiler:2.41'
+
+    // material for compose
+    implementation "androidx.compose.material3:material3:1.0.0-alpha08"
+
+
+    // bottom navigation
+    def nav_version = "2.4.1"
+    implementation "androidx.navigation:navigation-compose:$nav_version"
+
 }

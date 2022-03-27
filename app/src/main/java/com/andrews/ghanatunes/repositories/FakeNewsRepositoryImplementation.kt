@@ -1,5 +1,6 @@
-package com.andrews.ghanatunes
+package com.andrews.ghanatunes.repositories
 
+import com.andrews.ghanatunes.models.NewsModel
 import javax.inject.Inject
 
 class FakeNewsRepositoryImplementation @Inject constructor(): NewsRepository {

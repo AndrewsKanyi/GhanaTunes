@@ -5,14 +5,12 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
-import androidx.compose.material3.SmallTopAppBar
-import androidx.compose.runtime.Composable
+
 import androidx.compose.runtime.getValue
+import androidx.compose.ui.*
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavDestination
+import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
@@ -26,7 +24,6 @@ import com.andrews.ghanatunes.screens.RadioScreen
 import com.andrews.ghanatunes.ui.theme.GhanaTunesTheme
 import com.andrews.ghanatunes.viewmodels.MainActivityViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -45,20 +42,9 @@ class MainActivity : ComponentActivity() {
                     NavigationDestination.Profile
                 )
                 Scaffold(
-                    topBar = {
-                        SmallTopAppBar(
-                            title = {Text("Ghana tunes ")},
-                            navigationIcon = {
-                                IconButton(
-                                    onClick = { TODO()}
-                                ){
-                                    Icon(Icons.Filled.Menu, contentDescription = "TestDescription")
-                                }
-                            }
-                        )
-                    },
+
                     bottomBar = {
-                       BottomNavigation{
+                       BottomNavigation(backgroundColor = Color.White){
                            val navBackStackEntry by navController.currentBackStackEntryAsState()
                            val currentDestination = navBackStackEntry?.destination
                            navigationDestinations.forEach { navigationDestination ->
@@ -74,6 +60,7 @@ class MainActivity : ComponentActivity() {
                                             }
                                   },
                                   label = {Text(navigationDestination.title)},
+                                  alwaysShowLabel = false,
                                   icon = {Icon(painterResource(id = navigationDestination.iconResourceId), contentDescription = "test")}
                               )
                            }
@@ -88,25 +75,5 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
-    }
-}
-
-
-
-@Composable
-fun Greeting(name: String) {
-    Text(text = "Hello $name!")
-}
-
-@Composable
-fun PrintNewsModel(newsModel: NewsModel){
-    Text("Title: ${newsModel.title}")
-}
-
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    GhanaTunesTheme {
-        Greeting("Android")
     }
 }

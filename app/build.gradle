@@ -73,4 +73,10 @@ dependencies {
     def nav_version = "2.4.1"
     implementation "androidx.navigation:navigation-compose:$nav_version"
 
+    // Horizontal view pager for acompanist
+    def accompanist_verion = "0.24.5-alpha"
+    implementation "com.google.accompanist:accompanist-pager:$accompanist_verion"
+
+    // If using indicators, also depend on
+    implementation "com.google.accompanist:accompanist-pager-indicators:$accompanist_verion"
 }

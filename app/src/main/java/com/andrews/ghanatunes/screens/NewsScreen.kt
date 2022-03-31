@@ -19,8 +19,14 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.andrews.ghanatunes.R
+import com.google.accompanist.pager.ExperimentalPagerApi
+import com.google.accompanist.pager.rememberPagerState
+import androidx.compose.material.TabRowDefaults
+import com.google.accompanist.pager.HorizontalPager
+import com.google.accompanist.pager.pagerTabIndicatorOffset
 
 @Preview(showBackground = true)
+@ExperimentalPagerApi
 @Composable
 fun NewsScreen(){
     Column(
@@ -55,21 +61,37 @@ fun NewsScreen(){
         TabRows()
 
 
+
     }
 }
 
+@ExperimentalPagerApi
 @Preview(showBackground = true)
 @Composable
 fun TabRows(){
     val tabs = listOf<String>("Entertainment", "Sports", "Politics", "Tourism")
-    var state by remember{mutableStateOf(0)}
-    ScrollableTabRow(selectedTabIndex = 1, backgroundColor = Color.White, modifier =  Modifier.padding(20.dp)){
+    val pagerState = rememberPagerState()
+    val state by remember{mutableStateOf(0)}
+    ScrollableTabRow(selectedTabIndex = pagerState.currentPage,
+        backgroundColor = Color.White,
+        indicator = { tabPositions ->
+            TabRowDefaults.Indicator(
+                Modifier.pagerTabIndicatorOffset(pagerState, tabPositions)
+            )
+        },
+        modifier =  Modifier.padding(20.dp)){
         tabs.forEachIndexed { index, s ->
             Tab(selected = state == index,
                 onClick = { TODO()},
-                text = {Text(text=s)})
+                text = {Text(text=s, fontSize = 30.sp, color = Color.Black)})
 
         }
+    }
+    HorizontalPager(
+        count = tabs.size,
+        state = pagerState,
+    ) { page ->
+        Text("Page $page", fontSize = 30.sp)
     }
 }
 

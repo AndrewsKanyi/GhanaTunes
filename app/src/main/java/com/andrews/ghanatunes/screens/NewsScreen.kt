@@ -83,7 +83,7 @@ fun TabRows(){
         tabs.forEachIndexed { index, s ->
             Tab(selected = state == index,
                 onClick = { TODO()},
-                text = {Text(text=s, fontSize = 30.sp, color = Color.Black)})
+                text = {Text(text=s, fontSize = 20.sp, color = Color.Black)})
 
         }
     }
@@ -91,7 +91,8 @@ fun TabRows(){
         count = tabs.size,
         state = pagerState,
     ) { page ->
-        Text("Page $page", fontSize = 30.sp)
+
+        EntertainmentPage()
     }
 }
 

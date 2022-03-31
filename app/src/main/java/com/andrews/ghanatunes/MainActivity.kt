@@ -23,7 +23,9 @@ import com.andrews.ghanatunes.screens.ProfileScreen
 import com.andrews.ghanatunes.screens.RadioScreen
 import com.andrews.ghanatunes.ui.theme.GhanaTunesTheme
 import com.andrews.ghanatunes.viewmodels.MainActivityViewModel
+import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -31,9 +33,11 @@ class MainActivity : ComponentActivity() {
     private val viewmodel by viewModels<MainActivityViewModel>()
 
 
+    @OptIn(ExperimentalPagerApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+
             GhanaTunesTheme {
                 val navController = rememberNavController()
                 val navigationDestinations = listOf<NavigationDestination>(

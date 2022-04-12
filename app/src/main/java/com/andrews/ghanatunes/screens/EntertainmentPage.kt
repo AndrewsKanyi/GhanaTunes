@@ -1,6 +1,8 @@
 package com.andrews.ghanatunes.screens
 
+import android.graphics.Paint
 import android.media.Image
+import android.text.Layout
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -13,19 +15,28 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Text
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Bottom
+import androidx.compose.ui.Alignment.Companion.Center
+import androidx.compose.ui.Alignment.Companion.CenterHorizontally
+import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontStyle
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.andrews.ghanatunes.R
 
-@Preview(showBackground = true)
+
 @Composable
 fun EntertainmentPage(){
-    Column(modifier = Modifier.verticalScroll(rememberScrollState())) {
+    Column(modifier = Modifier
+        .padding(vertical = 10.dp)
+        .verticalScroll(rememberScrollState())
+        .fillMaxSize(40f)) {
         NewsItem()
         NewsItem()
         NewsItem()
@@ -58,30 +69,63 @@ fun EntertainmentPage(){
 fun NewsItem(){
     Row(
         modifier = Modifier
-            .height(80.dp)
+            .height(90.dp)
             .fillMaxSize()
-            .padding(5.dp)
+            .padding(10.dp)
     ){
-        Image(painter = painterResource(id = R.drawable.sample_image),
-            contentDescription = "samople",
+        Box(
             modifier = Modifier
-                .weight(2f)
-                .fillMaxSize(2f)
-                .clip(RoundedCornerShape(15))
+                .clip(RoundedCornerShape(20))
+                .weight(weight = 6f, fill = true)
+                .height(90.dp)
+                .fillMaxSize(0.2f)
                 .padding(horizontal = 5.dp, vertical = 1.dp),
-            contentScale = ContentScale.None
-        )
-        Row(modifier = Modifier
-            .weight(8f)
-            .padding(horizontal = 4.dp, vertical = 1.dp)){
-            Text("Header header header header header Header header header header header ",
+
+        ){
+            Image(painter = painterResource(id = R.drawable.sample_image),
+                contentDescription = "samople",
+                modifier = Modifier.fillMaxSize(),
+                contentScale = ContentScale.FillBounds
+            )
+        }
+        Column(modifier = Modifier
+            .weight(20f)
+            .fillMaxSize()
+            .padding(horizontal = 4.dp, vertical = 1.dp)
+
+        ){
+            Text("Header header header header header Hea der ...",
                 fontFamily = FontFamily.SansSerif,
                 textAlign = TextAlign.Start,
-
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.weight(10f).fillMaxWidth(),
                 fontSize = 14.sp)
-            Column() {
+            Box(
+                modifier = Modifier.weight(10f).fillMaxSize()
+            ){
+                Row(
+                modifier = Modifier
+                    .fillMaxSize()
+                ){
+                    Text(
+                        "4 hours ago",
+                        //textAlign = TextAlign.Start,
+                        modifier = Modifier.weight(5f)
+                            .align(Bottom),
+                        color = Color.Gray
+                    )
+                    Text(
+                        "900 views",
+                        textAlign = TextAlign.End,
+                        modifier = Modifier.weight(5f)
+                            .align(Bottom),
+                        color = Color.Gray
+
+                    )
+                }
 
             }
+
         }
     }
 }

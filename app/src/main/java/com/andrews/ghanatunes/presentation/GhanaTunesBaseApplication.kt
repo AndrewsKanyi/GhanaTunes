@@ -1,4 +1,4 @@
-package com.andrews.ghanatunes
+package com.andrews.ghanatunes.presentation
 
 import android.app.Application
 import dagger.hilt.android.HiltAndroidApp

@@ -1,4 +1,4 @@
-package com.andrews.ghanatunes.ui.theme
+package com.andrews.ghanatunes.presentation.theme
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Shapes

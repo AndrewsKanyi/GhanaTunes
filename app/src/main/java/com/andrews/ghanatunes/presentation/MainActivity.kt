@@ -1,4 +1,4 @@
-package com.andrews.ghanatunes
+package com.andrews.ghanatunes.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -10,19 +10,17 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
-import androidx.compose.ui.text.style.TextAlign
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
-import com.andrews.ghanatunes.models.NewsModel
-import com.andrews.ghanatunes.screens.NewsScreen
-import com.andrews.ghanatunes.screens.ProfileScreen
-import com.andrews.ghanatunes.screens.RadioScreen
-import com.andrews.ghanatunes.ui.theme.GhanaTunesTheme
-import com.andrews.ghanatunes.viewmodels.MainActivityViewModel
+import com.andrews.ghanatunes.presentation.screens.NewsScreen
+import com.andrews.ghanatunes.presentation.screens.ProfileScreen
+import com.andrews.ghanatunes.presentation.screens.RadioScreen
+import com.andrews.ghanatunes.presentation.theme.GhanaTunesTheme
+import com.andrews.ghanatunes.presentation.viewmodels.MainActivityViewModel
 import com.google.accompanist.pager.ExperimentalPagerApi
 import dagger.hilt.android.AndroidEntryPoint
 

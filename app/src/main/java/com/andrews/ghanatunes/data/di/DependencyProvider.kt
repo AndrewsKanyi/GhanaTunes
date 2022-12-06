@@ -1,6 +1,6 @@
-package com.andrews.ghanatunes
+package com.andrews.ghanatunes.data.di
 
-import com.andrews.ghanatunes.repositories.FakeNewsRepositoryImplementation
+import com.andrews.ghanatunes.data.repository.FakeNewsRepositoryImplementation
 import com.andrews.ghanatunes.repositories.NewsRepository
 import dagger.Binds
 import dagger.Module

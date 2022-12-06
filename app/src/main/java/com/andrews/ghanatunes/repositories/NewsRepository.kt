@@ -1,7 +1,7 @@
 package com.andrews.ghanatunes.repositories
 
-import com.andrews.ghanatunes.models.NewsModel
+import com.andrews.ghanatunes.domain.model.NewsModel
 
 interface NewsRepository {
-    fun getNews(): Collection<NewsModel>
+    fun getEntertainmentNews(): Collection<NewsModel>
 }

@@ -1,4 +1,4 @@
-package com.andrews.ghanatunes.ui.theme
+package com.andrews.ghanatunes.presentation.theme
 
 import androidx.compose.material.Typography
 import androidx.compose.ui.text.TextStyle

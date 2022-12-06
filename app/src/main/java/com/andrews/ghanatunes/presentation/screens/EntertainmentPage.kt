@@ -29,30 +29,10 @@ fun EntertainmentPage(){
         .padding(vertical = 10.dp)
         .verticalScroll(rememberScrollState())
         .fillMaxSize(40f)) {
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
-        NewsItem()
+        for(i in 1..1000){
+            NewsItem()
+        }
+
     }
 }
 

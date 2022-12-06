@@ -8,4 +8,6 @@ sealed class NavigationDestination(val route:String,val title: String, val iconR
         R.drawable.ic_newspaper_variant_multiple_outline
     )
     object Profile: NavigationDestination("profile", "Profile", R.drawable.ic_baseline_people_24)
+
+    object FirstSplashScreen : NavigationDestination("firstSplashScreen", "fisrtSplashScreen", 0)
 }

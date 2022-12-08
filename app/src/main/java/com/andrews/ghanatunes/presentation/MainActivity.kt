@@ -47,11 +47,12 @@ class MainActivity : ComponentActivity() {
                 )
                 Scaffold(
                 ){ innerPadding ->
+                    val a = innerPadding
                    NavHost(navController = navController, startDestination = NavigationDestination.FirstSplashScreen.route ){
                        composable(NavigationDestination.News.route){ NewsScreen()}
                        composable(NavigationDestination.Radios.route){ RadioScreen()}
                        composable(NavigationDestination.Profile.route){ ProfileScreen()}
-                       composable(NavigationDestination.FirstSplashScreen.route){SplashScreen()}
+                       composable(NavigationDestination.FirstSplashScreen.route){SplashScreen(navController)}
                        // lottie files starting animation
                    }
                 }

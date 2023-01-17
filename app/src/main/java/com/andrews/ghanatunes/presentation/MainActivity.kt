@@ -37,7 +37,8 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-
+            val a = viewmodel.getNews()
+            val b = viewmodel.getRadios()
             GhanaTunesTheme {
                 val navController = rememberNavController()
                 val navigationDestinations = listOf<NavigationDestination>(

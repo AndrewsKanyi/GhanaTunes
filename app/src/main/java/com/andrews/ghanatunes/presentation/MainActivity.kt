@@ -17,6 +17,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.andrews.ghanatunes.domain.model.RadioModel
 import com.andrews.ghanatunes.presentation.screens.NewsScreen
 import com.andrews.ghanatunes.presentation.screens.ProfileScreen
 import com.andrews.ghanatunes.presentation.screens.RadioScreen
@@ -38,7 +39,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val a = viewmodel.getNews()
-            val b = viewmodel.getRadios()
+           // val b = viewmodel.getRadios()
             GhanaTunesTheme {
                 val navController = rememberNavController()
                 val navigationDestinations = listOf<NavigationDestination>(

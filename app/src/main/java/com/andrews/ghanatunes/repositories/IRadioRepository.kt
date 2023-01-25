@@ -1,7 +1,8 @@
 package com.andrews.ghanatunes.repositories
 
 import com.andrews.ghanatunes.domain.model.RadioModel
+import kotlinx.coroutines.flow.Flow
 
 interface IRadioRepository {
-    fun getAllRadios(): List<RadioModel>
+    suspend fun getAllRadios(): Flow<List<RadioModel>>
 }

@@ -5,5 +5,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface IRadioService {
 
-    suspend fun loadRadios() : Flow<List<RadioModel>>
+    suspend fun loadRadios() : List<RadioModel>
 }

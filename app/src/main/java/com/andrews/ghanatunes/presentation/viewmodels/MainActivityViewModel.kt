@@ -17,11 +17,15 @@ class MainActivityViewModel @Inject constructor(
     private val radioRepository: IRadioRepository
 ) : ViewModel() {
 
+    private val radios:MutableCollection<RadioModel> = mutableListOf<RadioModel>()
     init {
         viewModelScope.launch {
-            radioRepository.getAllRadios().collect{
-
+            radioRepository.getAllRadios().collect{radiolist->
+             radiolist.forEach{
+                 radios.add(it)
+             }
             }
+
         }
     }
     fun getNews(): Collection<NewsModel>{

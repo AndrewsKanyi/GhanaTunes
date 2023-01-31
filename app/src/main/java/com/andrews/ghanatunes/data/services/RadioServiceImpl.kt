@@ -15,6 +15,7 @@ import org.jsoup.Jsoup
 import org.jsoup.nodes.Document
 import org.jsoup.nodes.Element
 import org.jsoup.nodes.Node
+import org.jsoup.nodes.TextNode
 import org.jsoup.select.Elements
 import java.net.URL
 import javax.inject.Inject
@@ -25,28 +26,33 @@ import kotlin.math.log
 class RadioServiceImpl @Inject constructor(
     val client: OkHttpClient
 ) : IRadioService {
-    val TAG: String = "RadioServiceImp"
+    val TAG: String = "RadioServiceImpl"
     val radiosFromService: Flow<List<RadioModel>> = flow {
 
         emit(listOf<RadioModel>())
     }.flowOn(Dispatchers.Default)
 
-    override suspend fun loadRadios(): List<RadioModel> {
-        Log.d(TAG, "loadRadios: Here 3")
-        Log.d(TAG, "loadRadios: Here1")
+    override suspend fun loadRadios(): MutableList<RadioModel> {
+
         return withContext(Dispatchers.IO) {
+            var returnRadios:Collection<RadioModel> = emptyList()
             val request =
                 Request.Builder().url("https://streema.com/radios/country/Ghana").build()
-
 
             try {
                 val document: Document =
                     Jsoup.connect("https://streema.com/radios/country/Ghana").get()
-                val resultingJson: Elements = document.select(".item")
+                val resultRadios: Elements = document.select(".item")
+                resultRadios.forEach{ it ->
+                    val imageSource:String? = it.select("img").first()?.attr("src")
+                    val actualRadioName:String? = (it.select("div.item-name > h5 > a").first()?.childNodes()?.first() as TextNode).toString().trim()
+                    val currentRadioName: String = actualRadioName.toString().trim()
+                    val radioLink:String = "https://streema.com"+it.select("div.item-name > h5 > a").attr("href")
 
-                val nodesList: List<Node> = document.childNodes()
-                val nodeConunt: Int = resultingJson.size
+                    returnRadios +=RadioModel(currentRadioName,radioLink, "")
+                }
 
+                Log.d(TAG, "loadRadios: ${returnRadios.size}")
             } catch (e: Exception) {
                 Log.d(TAG, "loadRadios: Exception happened here")
             }
